@@ -36,7 +36,8 @@
     "coffee-script": "^1.9.2"
   },
   "scripts": {
-    "test": "gulp test", 
+    "postinstall": "node node_modules/.bin/bower install && node node_modules/.bin/gulp production",
+    "test": "gulp test",
     "start": "gulp watch"
   },
   "repository": {
