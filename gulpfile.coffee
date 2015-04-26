@@ -25,7 +25,8 @@ gulp.task 'bower:concat', ['bower'], =>
     .pipe gulp.dest('public/dist')
 
 gulp.task 'config:site', =>
-  gulp.src ['public/config/app.coffee']
+  env = process.env.NODE_ENV ? 'development'
+  gulp.src ["public/config/#{env}/*.coffee"]
     .pipe coffee(bare: true)
     .pipe concat('config.js')
     .pipe gulp.dest('public/dist')
@@ -47,7 +48,7 @@ gulp.task 'test-karma', =>
 gulp.task 'test', ['test-karma']
 
 gulp.task 'http-server', =>
-  port = process.env.FRONTEND_PORT ? 5555;
+  port = process.env.PORT ? 5555;
   gulp
     .src './public'
     .pipe webserver
