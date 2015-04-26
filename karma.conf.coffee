@@ -2,30 +2,37 @@
 
 module.exports = (config) =>
   config.set
-    basePath: '.'
+    basePath: 'public'
     frameworks: ['mocha', 'sinon-chai']
     files: [
-      'public/dist/*'
+      'lib/angular/angular.js'
+      'lib/angular-mocks/angular-mocks.js'
+      'lib/angular-route/angular-route.js'
+      'lib/angular-bootstrap/ui-bootstrap.js'
+      'lib/lodash/lodash.js'
+      'test/test_helper.coffee'
+      'app/**/*.coffee'
+      'test/app/**/*.coffee'
     ]
     exclude: []
     colors: true
     port: 9876
-    logLevel: config.LOG_DISABLE
+    logLevel: config.LOG_INFO
     reporters: 'spec'
     autoWatch: true
     browsers: ['PhantomJS']
     captureTimeout: 60 * 1000
-    singleRun: true
+    singleRun: false
     coverageReporter:
       type: 'html',
       dir: 'test/coverage/'
     preprocessors:
       '**/*.html': 'ng-html2js'
-      'test/public/**/*.coffee':  ['coffee']
-      'public/**/*.coffee':  ['coffee']
+      'test/**/*.coffee':  ['coffee']
+      'app/**/*.coffee':  ['coffee']
     coffeePreprocessor:
       options:
         bare: false
         sourceMap: true
       transformPath: (path) =>
-        return path.replace /\.coffee$/, '.js'
+        path.replace /\.coffee$/, '.js'

@@ -4,7 +4,7 @@ angular
   $locationProvider.html5Mode
     enabled: true
     requireBase: false
-    
+
   $routeProvider
     .when '/',
       templateUrl: 'app/home/home.html'
@@ -13,5 +13,5 @@ angular
     .otherwise redirectTo: '/'
 
 .run ($rootScope, SITE_CONFIG) =>
-  $rootScope.global = {} 
+  $rootScope.global = {}
   $rootScope.global.app = SITE_CONFIG

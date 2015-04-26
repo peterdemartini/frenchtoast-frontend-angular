@@ -8,9 +8,7 @@ template = require 'gulp-template'
 coffee = require 'gulp-coffee'
 rename = require 'gulp-rename'
 uglify = require 'gulp-uglify'
-karma = require 'gulp-karma'
 webserver = require 'gulp-webserver'
-
 
 gulp.task 'bower', =>
   bower()
@@ -40,13 +38,6 @@ gulp.task 'scripts:concat', ['bower:concat', 'config:site'], =>
     .pipe uglify()
     .pipe gulp.dest 'public/dist'
 
-gulp.task 'test-karma', =>
-  gulp.src ['public/test/**/*']
-    .pipe karma(configFile: 'karma.conf.js')
-    .on 'error', (error) => console.error error
-
-gulp.task 'test', ['test-karma']
-
 gulp.task 'http-server', =>
   port = process.env.PORT ? 5555;
   gulp
@@ -64,4 +55,4 @@ gulp.task 'watch', ['http-server'], =>
 
 gulp.task 'default', ['scripts:concat']
 
-gulp.task 'production', ['test', 'scripts:concat']
+gulp.task 'production', ['scripts:concat']
